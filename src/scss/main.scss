@@ -37,81 +37,110 @@ body {
 
 /* 2. Content ================================= */
 
-.floating-box {
-	position: relative;
-	font-family: sans-serif;
-	width: 90%;
-	max-width: 500px;
-	margin: 140px auto;
-	padding: 30px 20px 30px 30px;
-
-	.foreground {
-		position: relative;
-		z-index: 2;
-		transform: translateZ(100px);
-	}
-
-	.background {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		left: 0;
-		top: 0;
-		background: white;
-		z-index: 1;
-		// perspective: 2000px;
-		transition: 0.2s;
-		transform: translateX(20px) perspective(600px) rotateY(15deg);
-	}
-
-	&:hover .background {
-		transform: translateX(-30px) perspective(600px) rotateY(-15deg);
-	}
-
-	.logo {
-		position: absolute;
-		top: -30px;
-		width: 60px;
-		z-index: 2;
-		transform: translateZ(100px);
-		transition: 0.3s;
-
-		&:hover {
-			transform: rotate(-0.4turn);
+.container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	
+	>form{
+		display: flex;
+		flex-direction: column;
+		max-width: 200px;
+		color: white;
+		background-color: rgb(11, 175, 235);
+		border-radius: 10px;
+		padding: 10px;
+		width: 500px;
+		>label{
+			font-size: 2em;
+			font-weight: 500;
+		}
+		>input{
+			background: rgb(255, 254, 254);
+			border: none;
+			border-radius:10px ;
+			padding: 20px;
+			margin-bottom: 10px;
+		}
+		>button{
+			background: rgb(34, 58, 165);
+			border: none;
+			border-radius:10px ;
+			padding: 5px;
+			margin-bottom: 10px;
+			color: white;
 		}
 	}
 
-	h1 {
-		font-weight: 700;
-		font-size: 22pt;
-		margin: 15px 0;
+	p{
+		color: rgb(92, 156, 240);
+		font-size: 14px;
 	}
 
-	p {
-		color: #777;
-		// margin: 10px 0;
-		line-height: 140%;
-	}
+	.tweetResults{
+		margin: 0;
+		.tweet-container{
+			text-align: center;
+			margin: 20px;
+			width: 500px;
+			background-color: rgb(247, 247, 247);
+			padding: 5px;
+			border-radius: 10px;
+			
 
-	p.github {
-		font-size: 0.8em;
+			.tweet-item{
+				
+				margin-bottom:10px ;
+				display: flex;
+				flex-wrap: wrap;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				h3{
+					color:rgb(30, 58, 182);
+					font-size: 13px;
+					margin: 0;
+					
+				}
+				>h4{
+					color:rgb(9, 19, 61);
+					font-size: 10px;
+					margin: 0;
+				}
+				>img{
+					border-radius: 50%;
+					padding-left: 10px;
+					width: auto;
+					height:auto;
+					margin: 0;		
+				}
+				p{
+					margin: 0;
+				}
+				.date-item{
+					color: rgb(41, 40, 40);
+					font-size: 14px;
+				}
 
-		a {
-			opacity: 0.2;
-			transition: 0.3s;
+				a {
+					color:rgb(110, 107, 107);
+					text-decoration: none;
+					font-size: 12px;
+				}
 
-			&:hover {
-				opacity: 1;
-				color: red;
+				
+				
+		
 			}
 		}
 	}
+}
 
-	code {
-		position: absolute;
-		top: 20px;
-		right: 20px;
-		font-size: 0.8em;
-		opacity: 0.2;
-	}
+#map{
+	width:100%;
+	height:500px;
+	margin-top: 20px;
+	border:1px solid #ccc
+
 }

@@ -31,82 +31,122 @@ body {
 }
 
 /* 2. Content ================================= */
-.floating-box {
-	position: relative;
-	font-family: sans-serif;
-	width: 90%;
-	max-width: 500px;
-	margin: 140px auto;
-	padding: 30px 20px 30px 30px;
+.container {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-align-items: center;
+	        align-items: center;
 }
 
-.floating-box .foreground {
-	position: relative;
-	z-index: 2;
-	transform: translateZ(100px);
+.container > form {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	max-width: 200px;
+	color: white;
+	background-color: #0bafeb;
+	border-radius: 10px;
+	padding: 10px;
+	width: 500px;
 }
 
-.floating-box .background {
-	position: absolute;
+.container > form > label {
+	font-size: 2em;
+	font-weight: 500;
+}
+
+.container > form > input {
+	background: #fffefe;
+	border: none;
+	border-radius: 10px;
+	padding: 20px;
+	margin-bottom: 10px;
+}
+
+.container > form > button {
+	background: #223aa5;
+	border: none;
+	border-radius: 10px;
+	padding: 5px;
+	margin-bottom: 10px;
+	color: white;
+}
+
+.container p {
+	color: #5c9cf0;
+	font-size: 14px;
+}
+
+.container .tweetResults {
+	margin: 0;
+}
+
+.container .tweetResults .tweet-container {
+	text-align: center;
+	margin: 20px;
+	width: 500px;
+	background-color: #f7f7f7;
+	padding: 5px;
+	border-radius: 10px;
+}
+
+.container .tweetResults .tweet-container .tweet-item {
+	margin-bottom: 10px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+
+.container .tweetResults .tweet-container .tweet-item h3 {
+	color: #1e3ab6;
+	font-size: 13px;
+	margin: 0;
+}
+
+.container .tweetResults .tweet-container .tweet-item > h4 {
+	color: #09133d;
+	font-size: 10px;
+	margin: 0;
+}
+
+.container .tweetResults .tweet-container .tweet-item > img {
+	border-radius: 50%;
+	padding-left: 10px;
+	width: auto;
+	height: auto;
+	margin: 0;
+}
+
+.container .tweetResults .tweet-container .tweet-item p {
+	margin: 0;
+}
+
+.container .tweetResults .tweet-container .tweet-item .date-item {
+	color: #292828;
+	font-size: 14px;
+}
+
+.container .tweetResults .tweet-container .tweet-item a {
+	color: #6e6b6b;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+#map {
 	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	background: white;
-	z-index: 1;
-	transition: 0.2s;
-	transform: translateX(20px) perspective(600px) rotateY(15deg);
-}
-
-.floating-box:hover .background {
-	transform: translateX(-30px) perspective(600px) rotateY(-15deg);
-}
-
-.floating-box .logo {
-	position: absolute;
-	top: -30px;
-	width: 60px;
-	z-index: 2;
-	transform: translateZ(100px);
-	transition: 0.3s;
-}
-
-.floating-box .logo:hover {
-	-ms-transform: rotate(-0.4turn);
-	    transform: rotate(-0.4turn);
-}
-
-.floating-box h1 {
-	font-weight: 700;
-	font-size: 22pt;
-	margin: 15px 0;
-}
-
-.floating-box p {
-	color: #777;
-	line-height: 140%;
-}
-
-.floating-box p.github {
-	font-size: 0.8em;
-}
-
-.floating-box p.github a {
-	opacity: 0.2;
-	transition: 0.3s;
-}
-
-.floating-box p.github a:hover {
-	opacity: 1;
-	color: red;
-}
-
-.floating-box code {
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	font-size: 0.8em;
-	opacity: 0.2;
+	height: 500px;
+	margin-top: 20px;
+	border: 1px solid #ccc;
 }
 
 /*# sourceMappingURL=main.css.map */
