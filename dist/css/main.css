@@ -80,66 +80,22 @@ body {
 	font-size: 14px;
 }
 
-.container .tweetResults {
-	margin: 0;
-}
-
-.container .tweetResults .tweet-container {
+.container .classResults {
 	text-align: center;
-	margin: 20px;
-	width: 500px;
-	background-color: #f7f7f7;
-	padding: 5px;
-	border-radius: 10px;
+	background: #dccdec;
 }
 
-.container .tweetResults .tweet-container .tweet-item {
-	margin-bottom: 10px;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-wrap: wrap;
-	        flex-wrap: wrap;
-	-webkit-flex-direction: column;
-	        flex-direction: column;
-	-webkit-justify-content: space-between;
-	        justify-content: space-between;
-	-webkit-align-items: center;
-	        align-items: center;
+.container .classResults .business-item h2 {
+	color: white;
 }
 
-.container .tweetResults .tweet-container .tweet-item h3 {
-	color: #1e3ab6;
-	font-size: 13px;
-	margin: 0;
+.container .classResults .business-item p {
+	color: blueviolet;
 }
 
-.container .tweetResults .tweet-container .tweet-item > h4 {
-	color: #09133d;
-	font-size: 10px;
-	margin: 0;
-}
-
-.container .tweetResults .tweet-container .tweet-item > img {
-	border-radius: 50%;
-	padding-left: 10px;
-	width: auto;
+.container .classResults .business-item img {
+	width: 200px;
 	height: auto;
-	margin: 0;
-}
-
-.container .tweetResults .tweet-container .tweet-item p {
-	margin: 0;
-}
-
-.container .tweetResults .tweet-container .tweet-item .date-item {
-	color: #292828;
-	font-size: 14px;
-}
-
-.container .tweetResults .tweet-container .tweet-item a {
-	color: #6e6b6b;
-	text-decoration: none;
-	font-size: 12px;
 }
 
 #map {

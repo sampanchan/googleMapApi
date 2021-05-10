@@ -76,65 +76,38 @@ body {
 	p{
 		color: rgb(92, 156, 240);
 		font-size: 14px;
-	}
-
-	.tweetResults{
-		margin: 0;
-		.tweet-container{
-			text-align: center;
-			margin: 20px;
-			width: 500px;
-			background-color: rgb(247, 247, 247);
-			padding: 5px;
-			border-radius: 10px;
-			
-
-			.tweet-item{
-				
-				margin-bottom:10px ;
-				display: flex;
-				flex-wrap: wrap;
-				flex-direction: column;
-				justify-content: space-between;
-				align-items: center;
-				h3{
-					color:rgb(30, 58, 182);
-					font-size: 13px;
-					margin: 0;
-					
-				}
-				>h4{
-					color:rgb(9, 19, 61);
-					font-size: 10px;
-					margin: 0;
-				}
-				>img{
-					border-radius: 50%;
-					padding-left: 10px;
-					width: auto;
-					height:auto;
-					margin: 0;		
-				}
-				p{
-					margin: 0;
-				}
-				.date-item{
-					color: rgb(41, 40, 40);
-					font-size: 14px;
-				}
-
-				a {
-					color:rgb(110, 107, 107);
-					text-decoration: none;
-					font-size: 12px;
-				}
-
-				
-				
 		
-			}
+	}
+	// h2{
+	// 	color: white;
+	// }
+	// img{
+	// 	width: 50px;
+	// 	&:nth-child(2)
+	// 	width: 200px;
+	// 	height:auto;
+	// }
+	
+
+	.classResults{
+		text-align: center;
+		background: rgb(220, 205, 236);
+		.business-item{
+		
+		h2{
+			color:white;
+		}
+		p{
+			color: blueviolet;
+		}
+		img{
+			width: 200px;
+			height: auto;
 		}
 	}
+		
+	}
+	
 }
 
 #map{

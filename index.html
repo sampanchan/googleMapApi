@@ -18,15 +18,18 @@
 			<form method="get"  name= "place_search" class="api-form" id="form">
 				<p class="message"></p>
 				<label>Map Google</label>
-				<input name="place" value="" />
+				<input name="place" id="place" value="" />
 				
 				
 				<button type="submit" class="get">Search</button>
+				<button type="submit" class="get">Clear</button>
 					
 			</form>
 			<div id="map"></div>
-		
+			<div id="places"></div>
+		<div class="classResults"></div>
 		</div>
+			
 			<div class="background"></div>
 		</div>
 		<script src="dist/js/maps.js"></script>
