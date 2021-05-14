@@ -3,6 +3,7 @@ class GoogleMapApi{
     // same as localhost:8888
     // API_BASE_URL = 'twitter-proxy.php'
     API_KEY = 'AIzaSyBN8YgsGRhmpj0vSQlLl5EViZa3MGbrjr8'
+    marker = []
 
     init(){
         console.log('google map init')
@@ -19,6 +20,7 @@ class GoogleMapApi{
             location: this.map.getCenter(),
             radius: 50,
             query: placeName,
+            fields: ['formatted_phone_number'],
         }
         this.service = new google.maps.places.PlacesService(this.map)
         this.service.textSearch(placeRequest, this.handlePlaceResults)
@@ -31,6 +33,20 @@ class GoogleMapApi{
         if (status == google.maps.places.PlacesServiceStatus.OK){
             console.log('got results', results)
 
+            this.clearMarkers()
+
+            results.forEach((result) => {
+                this.createMarker({
+                    lat: result.geometry.location.lat(),
+                    lng: result.geometry.location.lng(),
+                    title: result.name,
+                    description: result.formatted_address,
+
+                })
+
+
+            })
+
             //list container
             const listContainer = document.createElement('div');
             listContainer.setAttribute('class', 'business-container');
@@ -38,7 +54,7 @@ class GoogleMapApi{
             classResults.appendChild(listContainer);
             console.log('listcontainercreated')
 
-            // markers = [];
+            
             for ( let i = 0; i < results.length; i++){
 
                 const business = results[i];
@@ -51,6 +67,7 @@ class GoogleMapApi{
                 // const hours = business.opening_hours.isOpen(name); // hours?
                 // phone#
                 // const number = business.getPhoneNumber();
+                const number = business.formatted_phone_number;
                 const icon = business.icon;
                 const image = business.photos[0].getUrl();
                 const rating = business.rating;
@@ -89,9 +106,21 @@ class GoogleMapApi{
                 ratingEl.textContent = rating + "/5"
 
 
-                //marker
-                // let map;
                 
+                // this.createMarker({
+                //     position: position,
+                //     map: this.map,
+                //     title: 'the circus',
+                //     infoWindowContent: `<div><img src=${business.icon} atl="" width="20px" height="20px"></div>
+                //     <div>
+                //     <h3>${business.name}</h3>
+                //     <p>${business.formatted_address}</p>
+                //     <p>${business.formatted_phone_number}</p>
+                //     <p>${business.opening_hours.isOpen(name)}</p>
+                //     <img src=${business.photos[0].getUrl()} atl=" width="50px" height="50px">
+                //     <p> rating: ${business.rating}/5</p>
+                //     </div> `
+                // })
 
                 const marker = new google.maps.Marker({
 
@@ -102,7 +131,6 @@ class GoogleMapApi{
                     // label: 'the creative circus',
                     // draggable: true,
                 });
-                // markers.push(marker);
 
             
                 const infoWindowContent = `<div><img src=${business.icon} atl="" width="20px" height="20px"></div>
@@ -110,7 +138,7 @@ class GoogleMapApi{
                                             <h3>${business.name}</h3>
                                             <p>${business.formatted_address}</p>
                                             
-                                            <p>${business.opening_hours.isOpen(name)}</p>
+                                            
                                             <img src=${business.photos[0].getUrl()} atl=" width="50px" height="50px">
                                             <p> rating: ${business.rating}/5</p>
                                             </div> `
@@ -123,30 +151,44 @@ class GoogleMapApi{
                    
 
             }
-
-            //  ASK GREG
-            // function setMpOnAll(map){
-            //     for (let i = 0; i < markers.length; i++) {
-            //         markers[i].setMap(map);
-            //       }
-            // }
-            // function showMarkers() {
-            //     setMapOnAll(map);
-            //   }
-
-            //   function deleteMarkers() {
-            //     clearMarkers();
-            //     markers = [];
-            //   }
         }
+    }
 
-       
-
-       
-
-            
+    createMarker (options) {
         
+        const marker = new google.maps.Marker({
+            position: {lat: options.lat, lng: options.lng},
+            map: this.map,
+            title: options.title,
+            icon: options.icon,
+            // label: 'the creative circus',
+            // draggable: true,
+        })
 
+
+        const infoWindowContent = options.windowContent
+        if (!this.infoWindow){
+            this.infoWindow = new google.maps.InfoWindow()
+        }
+                    // const infoWindow = new google.maps.InfoWindow({
+                    //  content: infoWindowContent,
+                    // })
+                    marker.addListener('click', () => {
+                        // infoWindow.open(this.map, marker)
+                        this.infoWindow.setContent(infoWindowContent)
+                        this.infoWindow.open(this.map, marker)
+                     })
+
+                     this.marker.push(marker)
+                    
+    } 
+
+    clearMarkers(){
+        this.marker.forEach(marker => {
+            marker.setMap(null)
+        })
+
+        this.marker = []
     }
 
     ready(){
@@ -162,23 +204,31 @@ class GoogleMapApi{
         this.map = new google.maps.Map(document.getElementById('map'), mapOptions)
 
         const image = "/dist/img/tent.png"
-        const marker = new google.maps.Marker({
-            position: theCircus,
-            map: this.map,
-            title: 'the circus',
+        this.createMarker({
+            lat: theCircus.lat,
+            lng: theCircus.lng,
+            title: ' The circus',
             icon: image,
-            // label: 'the creative circus',
-            // draggable: true,
+            windowContent:`<div><h2>Join the Circus!!</h2><p> A place where you leave your worries behind and make new stress factors</p></div>`,
         })
+        // const image = "/dist/img/tent.png"
+        // const marker = new google.maps.Marker({
+        //     position: theCircus,
+        //     map: this.map,
+        //     title: 'the circus',
+        //     icon: image,
+        //     // label: 'the creative circus',
+        //     // draggable: true,
+        // })
 
 
-        const infoWindowContent = `<div><h2>Join the Circus!!</h2><p> A place where you leave your worries behind and make new stress factors</p></div>`
-                    const infoWindow = new google.maps.InfoWindow({
-                     content: infoWindowContent,
-                    })
-                    marker.addListener('click', () => {
-                        infoWindow.open(this.map, marker)
-                       })
+        // const infoWindowContent = `<div><h2>Join the Circus!!</h2><p> A place where you leave your worries behind and make new stress factors</p></div>`
+        //             const infoWindow = new google.maps.InfoWindow({
+        //              content: infoWindowContent,
+        //             })
+        //             marker.addListener('click', () => {
+        //                 infoWindow.open(this.map, marker)
+        //                })
 
 
         
