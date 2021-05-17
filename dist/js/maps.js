@@ -39,24 +39,25 @@ var GoogleMapApi = /*#__PURE__*/function () {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         console.log('got results', results);
 
-        _this.clearMarkers();
+        _this.clearMarkers(); // results.forEach((result) => {
+        //     this.createMarker({
+        //         lat: result.geometry.location.lat(),
+        //         lng: result.geometry.location.lng(),
+        //         title: result.name,
+        //         windowContent.
+        //     })
+        // })
+        //list container
 
-        results.forEach(function (result) {
-          _this.createMarker({
-            lat: result.geometry.location.lat(),
-            lng: result.geometry.location.lng(),
-            title: result.name,
-            description: result.formatted_address
-          });
-        }); //list container
 
         var listContainer = document.createElement('div');
         listContainer.setAttribute('class', 'business-container');
         var classResults = document.querySelector('.classResults');
+        classResults.innerHTML = '';
         classResults.appendChild(listContainer);
         console.log('listcontainercreated');
 
-        var _loop = function _loop(i) {
+        for (var i = 0; i < results.length; i++) {
           var business = results[i];
           var lat = business.geometry.location.lat();
           var lng = business.geometry.location.lng();
@@ -96,39 +97,35 @@ var GoogleMapApi = /*#__PURE__*/function () {
 
           var ratingEl = document.createElement('p');
           businessItemEl.appendChild(ratingEl);
-          ratingEl.textContent = rating + "/5"; // this.createMarker({
+          ratingEl.textContent = rating + "/5";
+
+          _this.createMarker({
+            lat: business.geometry.location.lat(),
+            lng: business.geometry.location.lng(),
+            map: _this.map,
+            title: 'the circus',
+            windowContent: "<div><img src=".concat(business.icon, " atl=\"\" width=\"20px\" height=\"20px\"></div>\n                    <div>\n                    <h3>").concat(business.name, "</h3>\n                    <p>").concat(business.formatted_address, "</p>\n                    \n                    <img src=").concat(business.photos[0].getUrl(), " atl=\" width=\"50px\" height=\"50px\">\n                    <p> rating: ").concat(business.rating, "/5</p>\n                    </div> ")
+          }); // const marker = new google.maps.Marker({
           //     position: position,
           //     map: this.map,
           //     title: 'the circus',
-          //     infoWindowContent: `<div><img src=${business.icon} atl="" width="20px" height="20px"></div>
-          //     <div>
-          //     <h3>${business.name}</h3>
-          //     <p>${business.formatted_address}</p>
-          //     <p>${business.formatted_phone_number}</p>
-          //     <p>${business.opening_hours.isOpen(name)}</p>
-          //     <img src=${business.photos[0].getUrl()} atl=" width="50px" height="50px">
-          //     <p> rating: ${business.rating}/5</p>
-          //     </div> `
+          //     // label: 'the creative circus',
+          //     // draggable: true,
+          // });
+          // const infoWindowContent = `<div><img src=${business.icon} atl="" width="20px" height="20px"></div>
+          //                             <div>
+          //                             <h3>${business.name}</h3>
+          //                             <p>${business.formatted_address}</p>
+          //                             <img src=${business.photos[0].getUrl()} atl=" width="50px" height="50px">
+          //                             <p> rating: ${business.rating}/5</p>
+          //                             </div> `
+          // const infoWindow = new google.maps.InfoWindow({
+          //  content: infoWindowContent,
           // })
+          // marker.addListener('click', () => {
+          //     infoWindow.open(this.map, marker)
+          //    })
 
-          var marker = new google.maps.Marker({
-            position: position,
-            map: _this.map,
-            title: 'the circus' // label: 'the creative circus',
-            // draggable: true,
-
-          });
-          var infoWindowContent = "<div><img src=".concat(business.icon, " atl=\"\" width=\"20px\" height=\"20px\"></div>\n                                            <div>\n                                            <h3>").concat(business.name, "</h3>\n                                            <p>").concat(business.formatted_address, "</p>\n                                            \n                                            \n                                            <img src=").concat(business.photos[0].getUrl(), " atl=\" width=\"50px\" height=\"50px\">\n                                            <p> rating: ").concat(business.rating, "/5</p>\n                                            </div> ");
-          var infoWindow = new google.maps.InfoWindow({
-            content: infoWindowContent
-          });
-          marker.addListener('click', function () {
-            infoWindow.open(_this.map, marker);
-          });
-        };
-
-        for (var i = 0; i < results.length; i++) {
-          _loop(i);
         }
       }
     });
@@ -153,7 +150,16 @@ var GoogleMapApi = /*#__PURE__*/function () {
         },
         map: this.map,
         title: options.title,
-        icon: options.icon // label: 'the creative circus',
+        icon: options.icon // windowContent: `<div><img src=${business.icon} atl="" width="20px" height="20px"></div>
+        //     <div>
+        //     <h3>${business.name}</h3>
+        //     <p>${business.formatted_address}</p>
+        //    <p>${business.formatted_phone_number}</p>
+        //    <p>${business.opening_hours.isOpen(name)}</p>
+        //    <img src=${business.photos[0].getUrl()} atl=" width="50px" height="50px">
+        //     <p> rating: ${business.rating}/5</p>
+        //     </div> `
+        // label: 'the creative circus',
         // draggable: true,
 
       });
@@ -211,6 +217,7 @@ var GoogleMapApi = /*#__PURE__*/function () {
       //     // label: 'the creative circus',
       //     // draggable: true,
       // })
+      //`<div><h2>Join the Circus!!</h2><p> A place where you leave your worries behind and make new stress factors</p></div>`,
       // const infoWindowContent = `<div><h2>Join the Circus!!</h2><p> A place where you leave your worries behind and make new stress factors</p></div>`
       //             const infoWindow = new google.maps.InfoWindow({
       //              content: infoWindowContent,
